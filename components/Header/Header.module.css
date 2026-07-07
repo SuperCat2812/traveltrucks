@@ -1,0 +1,21 @@
+.containerHeader {
+  display: flex;
+  max-height: 72px;
+  justify-content: start;
+  align-items: center;
+  padding: 24px 64px;
+  background-color: var(--inputs);
+  border-bottom: 1px solid var(--badges);
+}
+.logo {
+  margin-right: 450px;
+}
+
+.menuList {
+  display: flex;
+  gap: 32px;
+}
+
+.active {
+  color: var(--grey-green);
+}
