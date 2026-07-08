@@ -1,9 +1,10 @@
+'use client';
 import { Dispatch, SetStateAction } from 'react';
 import css from './Filter.module.css';
 import { CiMap } from 'react-icons/ci';
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
-import { campers, formDataValue } from '@/types/types';
+import { campers, filterData, formDataValue } from '@/types/types';
 import { getCamper } from '@/lib/api/clientApi';
 
 interface FilterProps {
@@ -13,12 +14,20 @@ interface FilterProps {
   setFilters: Dispatch<SetStateAction<formDataValue>>;
   setPage: Dispatch<SetStateAction<number>>;
   setTotalPage: Dispatch<SetStateAction<number>>;
+  filter: filterData;
 }
 
-export default function Filter({ location, setCamper, setLocation, setFilters, setPage, setTotalPage }: FilterProps) {
+export default function Filter({
+  location,
+  setCamper,
+  setLocation,
+  setFilters,
+  setPage,
+  setTotalPage,
+  filter,
+}: FilterProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
 
     const camperType = formData.get('camperType')?.toString() ?? '';
@@ -36,9 +45,8 @@ export default function Filter({ location, setCamper, setLocation, setFilters, s
       page: 1,
       perPage: 4,
     });
-    setCamper([]);
     setCamper(camperValue.campers);
-    setPage(1);
+    setPage(2);
     setTotalPage(camperValue.totalPages);
   };
   const handleClear = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,6 +63,11 @@ export default function Filter({ location, setCamper, setLocation, setFilters, s
       setLocation('');
     }
   };
+  const formatLabel = (value: string) =>
+    value
+      .split('_')
+      .map(word => word[0].toUpperCase() + word.slice(1))
+      .join(' ');
   return (
     <aside className={css.asideFilters}>
       <div>
@@ -79,72 +92,42 @@ export default function Filter({ location, setCamper, setLocation, setFilters, s
 
               <div className={css.CamperField}>
                 <p className={css.radioTitle}>Camper form</p>
-                <label htmlFor="Alcove" className={css.labelRadio}>
-                  <input type="radio" name="camperType" id="Alcove" value={'alcove'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Alcove</span>
-                </label>
-                <label htmlFor="Panel-Van" className={css.labelRadio}>
-                  <input type="radio" name="camperType" id="Panel-Van" value={'panel_van'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Panel Van</span>
-                </label>
-                <label htmlFor="Integrated" className={css.labelRadio}>
-                  <input type="radio" name="camperType" id="Integrated" value={'integrated'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Integrated</span>
-                </label>
-                <label htmlFor="Semi-Integrated" className={css.labelRadio}>
-                  <input type="radio" name="camperType" id="Semi-Integrated" value={'semi_integrated'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Semi Integrated</span>
-                </label>
+                {filter.forms.map(form => {
+                  return (
+                    <label key={form} htmlFor={form} className={css.labelRadio}>
+                      <input type="radio" name="camperType" id={form} value={form} />
+                      <IoMdRadioButtonOff className={css.empty} size={24} />
+                      <IoMdRadioButtonOn className={css.checked} size={24} />
+                      <span>{formatLabel(form)}</span>
+                    </label>
+                  );
+                })}
               </div>
               <div className={css.CamperField}>
                 <p className={css.radioTitle}>Engine</p>
-                <label htmlFor="Diesel" className={css.labelRadio}>
-                  <input type="radio" name="engineType" id="Diesel" value={'diesel'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Diesel</span>
-                </label>
-                <label htmlFor="Petrol" className={css.labelRadio}>
-                  <input type="radio" name="engineType" id="Petrol" value={'petrol'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Petrol</span>
-                </label>
-                <label htmlFor="Hybrid" className={css.labelRadio}>
-                  <input type="radio" name="engineType" id="Hybrid" value={'hybrid'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Hybrid</span>
-                </label>
-                <label htmlFor="Electric" className={css.labelRadio}>
-                  <input type="radio" name="engineType" id="Electric" value={'electric'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Electric</span>
-                </label>
+                {filter.engines.map(engine => {
+                  return (
+                    <label key={engine} htmlFor={engine} className={css.labelRadio}>
+                      <input type="radio" name="engineType" id={engine} value={engine} />
+                      <IoMdRadioButtonOff className={css.empty} size={24} />
+                      <IoMdRadioButtonOn className={css.checked} size={24} />
+                      <span>{formatLabel(engine)}</span>
+                    </label>
+                  );
+                })}
               </div>
               <div className={css.CamperField}>
                 <p className={css.radioTitle}>Transmission</p>
-                <label htmlFor="Automatic" className={css.labelRadio}>
-                  <input type="radio" name="transmissionType" id="Automatic" value={'automatic'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Automatic</span>
-                </label>
-                <label htmlFor="Manual" className={css.labelRadio}>
-                  <input type="radio" name="transmissionType" id="Manual" value={'manual'} />
-                  <IoMdRadioButtonOff className={css.empty} size={24} />
-                  <IoMdRadioButtonOn className={css.checked} size={24} />
-                  <span>Manual</span>
-                </label>
+                {filter.transmissions.map(transmission => {
+                  return (
+                    <label key={transmission} htmlFor={transmission} className={css.labelRadio}>
+                      <input type="radio" name="transmissionType" id={transmission} value={transmission} />
+                      <IoMdRadioButtonOff className={css.empty} size={24} />
+                      <IoMdRadioButtonOn className={css.checked} size={24} />
+                      <span>{formatLabel(transmission)}</span>
+                    </label>
+                  );
+                })}
               </div>
             </div>
           </div>

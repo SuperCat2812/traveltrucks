@@ -9,11 +9,18 @@ export interface formData {
   perPage: number;
   page: number;
 }
+
 type forms = 'alcove' | 'panel_van' | 'integrated' | 'semi_integrated';
 
 type transmissions = 'automatic' | 'manual';
 
 type engines = 'diesel' | 'petrol' | 'hybrid' | 'electric';
+
+export interface filterData {
+  forms: forms[];
+  transmissions: transmissions[];
+  engines: engines[];
+}
 
 export interface campers {
   id: string;
@@ -34,6 +41,37 @@ export interface campers {
   coverImage: string;
   totalReviews: 0;
 }
+
+interface gallery {
+  id: string;
+  camperId: string;
+  thumb: string;
+  original: string;
+  order: number;
+}
+
+export interface camperID {
+  id: string;
+  name: string;
+  price: number;
+  rating: number;
+  location: string;
+  description: string;
+  form: forms;
+  length: string;
+  width: string;
+  height: string;
+  tank: string;
+  consumption: string;
+  transmission: transmissions;
+  engine: engines;
+  amenities: string[];
+  createdAt: string;
+  updatedAt: string;
+  gallery: gallery[];
+  totalReviews: number;
+}
+
 export interface campersData {
   page: number;
   perPage: number;

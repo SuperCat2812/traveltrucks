@@ -1,0 +1,114 @@
+.camperItem {
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  align-items: start;
+}
+.Images {
+  display: flex;
+  flex-direction: column;
+  width: 638px;
+  height: 676px;
+}
+
+.camperImage {
+  border-radius: 16px;
+}
+
+.containerCamper {
+  background-color: var(--inputs);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 840px;
+  height: 264px;
+  justify-content: space-between;
+}
+
+.camperTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.camperRating {
+  display: flex;
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  gap: 4px;
+  align-items: center;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 24px;
+  width: 525px;
+}
+
+.listCategory {
+  display: flex;
+  gap: 8px;
+}
+.itemCategory {
+  border-radius: 100px;
+  padding-block: 12px;
+  padding-inline: 18px;
+  width: max-content;
+  height: 48px;
+  background-color: var(--badges);
+  mix-blend-mode: multiply;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.showMore {
+  border-radius: 200px;
+  padding-block: 16px;
+  padding-inline: 43px;
+  width: 173px;
+  height: 56px;
+  background-color: var(--grey-green);
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+
+.showMore:hover {
+  background-color: var(--green-hover);
+}
+
+.ratingStar {
+  color: var(--rating);
+}
+
+.louderBtn {
+  border: 1px solid #dadde1;
+  border-radius: 200px;
+  padding-block: 16px;
+  padding-inline: 32px;
+  width: 145px;
+  height: 56px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  background-color: var(--white);
+}
+.louderBtn:hover {
+  border: 1px solid var(--green-hover);
+}

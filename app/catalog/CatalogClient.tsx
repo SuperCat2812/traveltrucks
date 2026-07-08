@@ -1,8 +1,8 @@
 'use client';
 
 import css from './catalog.module.css';
-import { MouseEvent, useState } from 'react';
-import { campers, campersData, formDataValue } from '@/types/types';
+import { useState } from 'react';
+import { campers, campersData, filterData, formDataValue } from '@/types/types';
 import Filter from '@/components/Filter/Filter';
 import Image from 'next/image';
 import { GiRoundStar } from 'react-icons/gi';
@@ -15,10 +15,11 @@ import { getCamper } from '@/lib/api/clientApi';
 import { useRouter } from 'next/navigation';
 
 interface ClientCatalogProps {
-  catalogCampers: campersData;
+    catalogCampers: campersData;
+    filter: filterData;
 }
 
-export default function ClientCatalog({ catalogCampers }: ClientCatalogProps) {
+export default function ClientCatalog({ catalogCampers,filter }: ClientCatalogProps) {
   const router = useRouter();
   const [location, setLocation] = useState('');
   const [page, setPage] = useState(1);
@@ -51,7 +52,9 @@ export default function ClientCatalog({ catalogCampers }: ClientCatalogProps) {
     setTotalPage(data.totalPages);
     setPage(prev => prev + 1);
   };
-
+  const handlerClick = (id: string) => {
+    router.push(`/catalog/${id}`);
+  };
   return (
     <div className={css.container}>
       <Filter
@@ -60,7 +63,8 @@ export default function ClientCatalog({ catalogCampers }: ClientCatalogProps) {
         setCamper={setCamper}
         setFilters={setFilters}
         setPage={setPage}
-        setTotalPage={setTotalPage}
+              setTotalPage={setTotalPage}
+              filter={filter}
       />
       <div className={css.containerList}>
         <ul>
@@ -115,7 +119,9 @@ export default function ClientCatalog({ catalogCampers }: ClientCatalogProps) {
                   </ul>
                 </div>
                 <div>
-                  <button className={css.showMore}>Show more</button>
+                  <button className={css.showMore} onClick={() => handlerClick(camper.id)}>
+                    Show more
+                  </button>
                 </div>
               </div>
             </li>
