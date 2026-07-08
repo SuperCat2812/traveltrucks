@@ -7,13 +7,11 @@
   background-color: var(--inputs);
   border-bottom: 1px solid var(--badges);
 }
-.logo {
-  margin-right: 450px;
-}
 
 .menuList {
   display: flex;
   gap: 32px;
+  margin-left: 450px;
 }
 
 .active {

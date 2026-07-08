@@ -1,152 +1,128 @@
-.asideFilters {
-  background-color: var(--inputs);
-  border-radius: 20px;
-  padding: 24px;
-  width: 360px;
-  height: 840px;
-  margin-top: 48px;
-  margin-left: 63px;
-}
-.formFilter {
+.container {
   display: flex;
-  flex-direction: column;
-  gap: 48px;
+  gap: 65px;
+  padding-top: 48px;
+  padding-bottom: 52px;
 }
 
-.formContainer {
+.containerList {
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 40px;
 }
-.labelLocation {
+
+.camperItem {
+  border-radius: 16px;
+  padding: 24px;
+  width: 888px;
+  height: 312px;
+  background-color: var(--inputs);
+  display: flex;
+  gap: 24px;
+  width: 888px;
+  padding: 24px;
+  align-items: start;
+}
+.camperItem:not(:first-child) {
+  margin-top: 32px;
+}
+.camperImage {
+  border-radius: 16px;
+}
+
+.containerCamper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 24px;
+  width: 840px;
+  height: 264px;
+  justify-content: space-between;
+}
+
+.camperTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.camperRating {
+  display: flex;
+  margin-top: 8px;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
-  color: var(--gray);
+  gap: 4px;
+  align-items: center;
 }
-.containerInput {
+
+.location {
   display: flex;
-  border-radius: 12px;
-  padding: 16px 20px;
-  width: 312px;
-  height: 56px;
-  background-color: var(--white);
+  align-items: center;
+  gap: 4px;
+}
+
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 24px;
+  width: 525px;
+}
+
+.listCategory {
+  display: flex;
+  gap: 8px;
+}
+.itemCategory {
+  border-radius: 100px;
+  padding-block: 12px;
+  padding-inline: 18px;
+  width: max-content;
+  height: 48px;
+  background-color: var(--badges);
+  mix-blend-mode: multiply;
+  display: flex;
   gap: 8px;
   align-items: center;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
 }
-.containerInput:focus-within .iconLocation,
-.filled .iconLocation {
-  color: var(--main);
-}
-.inputLocation {
+
+.showMore {
+  border-radius: 200px;
+  padding-block: 16px;
+  padding-inline: 43px;
+  width: 173px;
+  height: 56px;
+  background-color: var(--grey-green);
   border: none;
   outline: none;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-}
-.inputLocation::placeholder {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-}
-.filterContainer {
-  display: flex;
-  gap: 14px;
-  flex-direction: column;
-}
-
-.titleFilter {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.2;
-  color: var(--main);
-}
-
-.CamperField {
-  border: none;
-  outline: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.radioTitle {
-  color: var(--gray);
-}
-
-.labelRadio {
-  display: flex;
-  gap: 8px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.labelRadio input {
-  display: none;
-}
-.empty {
-  color: var(--text);
-}
-.checked {
-  display: none;
-}
-
-.labelRadio input:checked ~ .empty {
-  display: none;
-}
-
-.labelRadio input:checked ~ .checked {
-  display: block;
-  color: var(--text);
-}
-
-.formButton {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.01em;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.searchBtn {
-  background-color: var(--grey-green);
-  border-radius: 200px;
-  padding-block: 16px;
-  padding-inline: 60px;
-  width: 312px;
-  height: 56px;
   color: var(--white);
-  border: none;
-  outline: none;
 }
 
-.clearBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.showMore:hover {
+  background-color: var(--green-hover);
+}
+
+.ratingStar {
+  color: var(--rating);
+}
+
+.louderBtn {
   border: 1px solid #dadde1;
   border-radius: 200px;
   padding-block: 16px;
   padding-inline: 32px;
-  width: 312px;
+  width: 145px;
   height: 56px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
   background-color: var(--white);
-  gap: 4px;
 }
-
-.searchBtn:hover {
-  background-color: var(--green-hover);
-}
-.clearBtn:hover {
+.louderBtn:hover {
   border: 1px solid var(--green-hover);
 }
