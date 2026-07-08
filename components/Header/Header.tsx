@@ -20,7 +20,7 @@ export default function Header() {
           <ul className={css.menuList}>
             <li className={css.menuItem}>
               <Link
-                href=""
+                href="/"
                 className={`${css.menuLink} ${isActive('/') ? css.active : ''}`}
               >
                 Home
@@ -28,8 +28,8 @@ export default function Header() {
             </li>
             <li className={css.menuItem}>
               <Link
-                href=""
-                className={`${css.menuLink} ${isActive('catalog') ? css.active : ''}`}
+                href="/catalog"
+                className={`${css.menuLink} ${isActive('/catalog') ? css.active : ''}`}
               >
                 Catalog
               </Link>

@@ -12,8 +12,8 @@ export default function Home() {
           layout="fill"
           objectFit="cover"
         />
+        <div className={css.overlay} />
       </div>
-      <div className={css.overlay} />
       <main className={css.main}>
         <div className={css.containerText}>
           <h1 className={css.title}>Campers of your dreams</h1>
@@ -21,7 +21,7 @@ export default function Home() {
             You can find everything you want in our catalog
           </p>
         </div>
-        <Link href="" className={css.mainButton}>
+        <Link href="./catalog" className={css.mainButton}>
           View Now
         </Link>
       </main>
