@@ -1,4 +1,4 @@
-import { camperID, campers, campersData, filterData, formData } from '@/types/types';
+import { camperID, campersData, filterData, formData } from '@/types/types';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://campers-api.goit.study';

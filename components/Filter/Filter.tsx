@@ -4,26 +4,20 @@ import css from './Filter.module.css';
 import { CiMap } from 'react-icons/ci';
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
-import { campers, filterData, formDataValue } from '@/types/types';
-import { getCamper } from '@/lib/api/clientApi';
+import { filterData, formDataValue } from '@/types/types';
 
 interface FilterProps {
   location: string;
   setLocation: Dispatch<SetStateAction<string>>;
-  setCamper: Dispatch<SetStateAction<campers[]>>;
   setFilters: Dispatch<SetStateAction<formDataValue>>;
-  setPage: Dispatch<SetStateAction<number>>;
-  setTotalPage: Dispatch<SetStateAction<number>>;
   filter: filterData;
 }
 
 export default function Filter({
   location,
-  setCamper,
+
   setLocation,
   setFilters,
-  setPage,
-  setTotalPage,
   filter,
 }: FilterProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,34 +27,25 @@ export default function Filter({
     const camperType = formData.get('camperType')?.toString() ?? '';
     const engineType = formData.get('engineType')?.toString() ?? '';
     const transmissionType = formData.get('transmissionType')?.toString() ?? '';
-    const newFilter = {
+    setFilters({
       location,
       form: camperType,
       engine: engineType,
       transmission: transmissionType,
-    };
-    setFilters(newFilter);
-    const camperValue = await getCamper({
-      dataFilter: newFilter,
-      page: 1,
-      perPage: 4,
     });
-    setCamper(camperValue.campers);
-    setPage(2);
-    setTotalPage(camperValue.totalPages);
   };
   const handleClear = (e: React.MouseEvent<HTMLButtonElement>) => {
     const form = e.currentTarget.form;
 
     if (form) {
+      form.reset();
+      setLocation('');
       setFilters({
         location: '',
         form: '',
         engine: '',
         transmission: '',
       });
-      form.reset();
-      setLocation('');
     }
   };
   const formatLabel = (value: string) =>

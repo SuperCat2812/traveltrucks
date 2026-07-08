@@ -13,21 +13,15 @@ import { MdElectricBolt } from 'react-icons/md';
 import { FaCarAlt } from 'react-icons/fa';
 import { getCamper } from '@/lib/api/clientApi';
 import { useRouter } from 'next/navigation';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 interface ClientCatalogProps {
-    catalogCampers: campersData;
-    filter: filterData;
+  filter: filterData;
 }
 
-export default function ClientCatalog({ catalogCampers,filter }: ClientCatalogProps) {
+export default function ClientCatalog({ filter }: ClientCatalogProps) {
   const router = useRouter();
   const [location, setLocation] = useState('');
-  const [page, setPage] = useState(1);
-  const perPage = 4;
-  const [totalPage, setTotalPage] = useState(catalogCampers.totalPages);
-  console.log(totalPage);
-
-  const [campers, setCamper] = useState<campers[]>(catalogCampers.campers);
   const initialFilters: formDataValue = {
     location: '',
     form: '',
@@ -35,37 +29,26 @@ export default function ClientCatalog({ catalogCampers,filter }: ClientCatalogPr
     transmission: '',
   };
   const [filters, setFilters] = useState<formDataValue>(initialFilters);
-  const handleLoadMore = async () => {
-    const data = await getCamper({
-      dataFilter: filters,
-      page,
-      perPage,
-    });
 
-    setCamper(prev => {
-      const existingIds = new Set(prev.map(item => item.id));
-
-      const newItems = data.campers.filter(item => !existingIds.has(item.id));
-
-      return [...prev, ...newItems];
-    });
-    setTotalPage(data.totalPages);
-    setPage(prev => prev + 1);
-  };
+  const perPage = 4;
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
+    queryKey: ['campers', filters],
+    initialPageParam: 1,
+    queryFn: ({ pageParam }) =>
+      getCamper({
+        dataFilter: filters,
+        page: pageParam,
+        perPage,
+      }),
+    getNextPageParam: lastPage => (lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined),
+  });
+  const campers = data?.pages.flatMap(page => page.campers) ?? [];
   const handlerClick = (id: string) => {
     router.push(`/catalog/${id}`);
   };
   return (
     <div className={css.container}>
-      <Filter
-        location={location}
-        setLocation={setLocation}
-        setCamper={setCamper}
-        setFilters={setFilters}
-        setPage={setPage}
-              setTotalPage={setTotalPage}
-              filter={filter}
-      />
+      <Filter location={location} setLocation={setLocation} setFilters={setFilters} filter={filter} />
       <div className={css.containerList}>
         <ul>
           {campers.map(camper => (
@@ -127,9 +110,9 @@ export default function ClientCatalog({ catalogCampers,filter }: ClientCatalogPr
             </li>
           ))}
         </ul>
-        {campers.length > 0 && page < totalPage && (
-          <button className={css.louderBtn} onClick={handleLoadMore}>
-            Load more
+        {hasNextPage && (
+          <button className={css.louderBtn} onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+            {isFetchingNextPage ? 'Loading...' : 'Load more'}
           </button>
         )}
       </div>
