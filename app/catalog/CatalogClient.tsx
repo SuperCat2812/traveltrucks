@@ -2,7 +2,7 @@
 
 import css from './catalog.module.css';
 import { useState } from 'react';
-import { campers, campersData, filterData, formDataValue } from '@/types/types';
+import { filterData, formDataValue } from '@/types/types';
 import Filter from '@/components/Filter/Filter';
 import Image from 'next/image';
 import { GiRoundStar } from 'react-icons/gi';
@@ -10,8 +10,8 @@ import { CiMap } from 'react-icons/ci';
 import { TbManualGearbox, TbAutomaticGearbox } from 'react-icons/tb';
 import { FaGasPump } from 'react-icons/fa6';
 import { MdElectricBolt } from 'react-icons/md';
-import { FaCarAlt } from 'react-icons/fa';
-import { getCamper } from '@/lib/api/clientApi';
+import { FaCarAlt, FaEuroSign } from 'react-icons/fa';
+import { getCamper } from '@/lib/api/camperApi';
 import { useRouter } from 'next/navigation';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
@@ -57,8 +57,11 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
               <div className={css.containerCamper}>
                 <div>
                   <div className={css.camperTitle}>
-                    <p>{camper.name}</p>
-                    <p>{camper.price}</p>
+                    <p className={css.name}>{camper.name}</p>
+                    <p className={css.price}>
+                      <FaEuroSign size={20} />
+                      {camper.price}
+                    </p>
                   </div>
                   <div className={css.camperRating}>
                     <GiRoundStar size={16} className={css.ratingStar} /> <p>{camper.rating}</p>

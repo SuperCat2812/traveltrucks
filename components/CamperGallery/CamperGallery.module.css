@@ -1,0 +1,44 @@
+.gallery {
+  width: 638px;
+}
+
+.mainSwiper {
+  width: 100%;
+  height: 505px;
+}
+
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+  color: transparent;
+}
+
+:global(.swiper-slide-thumb-active) :local(.thumbImage) {
+  border-color: var(--grey-green);
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.thumbsSwiper {
+  width: 100%;
+  margin-top: 27px;
+  height: 120px;
+}
+
+.thumbSlide {
+  height: 128px;
+}
+
+.thumbImage {
+  width: 135px;
+  height: 114px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 3px solid transparent;
+  box-sizing: border-box;
+  transition: box-color 0.2s;
+}

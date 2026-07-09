@@ -19,17 +19,18 @@ type CamperGalleryProps = {
 export default function CamperGallery({ images, name }: CamperGalleryProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   return (
-    <>
+    <div className={css.gallery}>
       <Swiper
         loop
         spaceBetween={10}
         navigation
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
+        className={css.mainSwiper}
       >
         {images.map(image => (
           <SwiperSlide key={image.id}>
-            <Image src={image.original} alt={name} width={600} height={400} />
+            <Image src={image.original} alt={name} width={600} height={400} className={css.mainImage} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -37,18 +38,19 @@ export default function CamperGallery({ images, name }: CamperGalleryProps) {
       <Swiper
         onSwiper={setThumbsSwiper}
         loop
-        spaceBetween={10}
+        spaceBetween={32}
         slidesPerView={4}
         freeMode
         watchSlidesProgress
         modules={[FreeMode, Navigation, Thumbs]}
+        className={css.thumbsSwiper}
       >
         {images.map(image => (
           <SwiperSlide key={image.id}>
-            <Image src={image.thumb} alt={name} width={120} height={80} />
+            <Image src={image.thumb} alt={name} width={120} height={80} className={css.thumbImage} />
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 }

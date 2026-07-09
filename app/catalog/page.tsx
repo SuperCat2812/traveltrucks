@@ -1,4 +1,4 @@
-import { getFilter } from '@/lib/api/clientApi';
+import { getFilter } from '@/lib/api/camperApi';
 import ClientCatalog from './CatalogClient';
 
 export default async function Catalog() {

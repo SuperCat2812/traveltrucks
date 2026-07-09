@@ -3,13 +3,48 @@
   padding: 24px;
   display: flex;
   gap: 24px;
-  align-items: start;
 }
-.Images {
+
+.container {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+}
+
+.reviewsSection {
+  margin-top: 32px;
+  padding: 24px;
+}
+
+.Images {
+  flex-shrink: 0;
   width: 638px;
-  height: 676px;
+}
+
+.containerAmenitie {
+  background-color: var(--inputs);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-radius: 16px;
+  padding: 24px;
+  width: 650px;
+  height: 50%;
+}
+
+.amenitieList {
+  display: flex;
+  gap: 8px;
+}
+
+.amenitieItem {
+  border-radius: 100px;
+  padding-block: 12px;
+  padding-inline: 18px;
+  width: 115px;
+  height: 48px;
+  background-color: var(--badges);
+  mix-blend-mode: multiply;
 }
 
 .camperImage {
@@ -21,14 +56,18 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 840px;
-  height: 264px;
-  justify-content: space-between;
+  border-radius: 16px;
+  padding: 24px;
+  width: 650px;
+  height: 304px;
 }
 
 .camperTitle {
   display: flex;
   justify-content: space-between;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
 }
 
 .camperRating {
@@ -48,23 +87,71 @@
 }
 
 .description {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  height: 24px;
+  height: max-content;
   width: 525px;
+  color: var(--text);
+}
+
+.containerCamperRating {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .listCategory {
   display: flex;
   gap: 8px;
 }
+
+.price {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+}
+
+.amenitieTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+}
+
+.amenitieContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 602px;
+}
+
+.amenitieLine {
+  border: 1px solid #dadde1;
+}
+
+.amenitieText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.detailList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+}
+
 .itemCategory {
   border-radius: 100px;
   padding-block: 12px;
   padding-inline: 18px;
   width: max-content;
-  height: 48px;
+  height: 304px;
   background-color: var(--badges);
   mix-blend-mode: multiply;
   display: flex;
@@ -111,4 +198,58 @@
 }
 .louderBtn:hover {
   border: 1px solid var(--green-hover);
+}
+
+.reviewsTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+}
+
+.reviewContainer {
+  margin-top: 24px;
+}
+
+.reviewList {
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 16px;
+  width: 623px;
+  height: 180px;
+  background-color: var(--inputs);
+}
+
+.reviewContent {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.icon {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--white);
+  color: var(--grey-green);
+  padding: 15px 21px 13px 21px;
+}
+
+.reviewComment {
+  margin-top: 16px;
+}
+
+.reviewName {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }

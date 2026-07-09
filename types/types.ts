@@ -79,3 +79,12 @@ export interface campersData {
   totalPages: number;
   campers: campers[];
 }
+
+export interface review {
+  id: string;
+  camperId: camperID['id'];
+  reviewer_name: string;
+  reviewer_rating: number;
+  comment: string;
+  createdAt: string;
+}

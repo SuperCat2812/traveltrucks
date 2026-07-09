@@ -1,4 +1,4 @@
-import { camperID, campersData, filterData, formData } from '@/types/types';
+import { camperID, campersData, filterData, formData, review } from '@/types/types';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://campers-api.goit.study';
@@ -10,6 +10,10 @@ export const getCamper = async ({ dataFilter, page, perPage }: formData) => {
 };
 export const getCamperID = async (dataID: string) => {
   const { data } = await axios.get<camperID>(`/campers/${dataID}`);
+  return data;
+};
+export const getReviews = async (dataID: string) => {
+  const { data } = await axios.get<review[]>(`/campers/${dataID}/reviews`);
   return data;
 };
 
