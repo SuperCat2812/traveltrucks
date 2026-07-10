@@ -4,7 +4,7 @@ export interface FormDataValue {
   engine: string;
   transmission: string;
 }
-export interface formData {
+export interface FormData {
   dataFilter?: FormDataValue;
   perPage: number;
   page: number;
@@ -12,21 +12,21 @@ export interface formData {
 
 type Forms = 'alcove' | 'panel_van' | 'integrated' | 'semi_integrated';
 
-type transmissions = 'automatic' | 'manual';
+type Transmissions = 'automatic' | 'manual';
 
-type engines = 'diesel' | 'petrol' | 'hybrid' | 'electric';
+type Engines = 'diesel' | 'petrol' | 'hybrid' | 'electric';
 
 export interface FilterData {
   forms: Forms[];
-  transmissions: transmissions[];
-  engines: engines[];
+  transmissions: Transmissions[];
+  engines: Engines[];
 }
 
 export interface Campers {
   id: string;
   name: string;
   price: number;
-  rating: 0;
+  rating: number;
   location: string;
   description: string;
   form: Forms;
@@ -35,11 +35,11 @@ export interface Campers {
   height: string;
   tank: string;
   consumption: string;
-  transmission: transmissions;
-  engine: engines;
+  transmission: Transmissions;
+  engine: Engines;
   amenities: string[];
   coverImage: string;
-  totalReviews: 0;
+  totalReviews: number;
 }
 
 interface Gallery {
@@ -63,8 +63,8 @@ export interface CamperID {
   height: string;
   tank: string;
   consumption: string;
-  transmission: transmissions;
-  engine: engines;
+  transmission: Transmissions;
+  engine: Engines;
   amenities: string[];
   createdAt: string;
   updatedAt: string;

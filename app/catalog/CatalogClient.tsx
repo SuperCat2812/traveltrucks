@@ -32,7 +32,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
   const [filters, setFilters] = useState<FormDataValue>(initialFilters);
   const [draftFilters, setDraftFilters] = useState<FormDataValue>(initialFilters);
   const perPage = 4;
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError, refetch } = useInfiniteQuery({
     queryKey: ['campers', filters],
     initialPageParam: 1,
     queryFn: ({ pageParam }) =>
@@ -55,10 +55,10 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
       .split('_')
       .map(word => word[0].toUpperCase() + word.slice(1))
       .join(' ');
-  const showLoader = isLoading || isFetchingNextPage;
+  const showInitialLoader = isLoading;
   return (
     <>
-      {showLoader && (
+      {showInitialLoader && (
         <div className={css.loadingOverlay}>
           <Loader />
         </div>
@@ -98,7 +98,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                       </div>
                       <div className={css.camperRating}>
                         <GiRoundStar size={16} className={css.ratingStar} /> <p>{camper.rating}</p>
-                        <p>({camper.totalReviews} Reviews )</p>
+                        <p>({camper.totalReviews} Reviews)</p>
                         <p className={css.location}>
                           <CiMap size={24} /> {camper.location}
                         </p>
@@ -138,7 +138,12 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                       </ul>
                     </div>
                     <div>
-                      <Link href={`/catalog/${camper.id}`} target="_blank" className={css.showMore}>
+                      <Link
+                        href={`/catalog/${camper.id}`}
+                        target="_blank"
+                        className={css.showMore}
+                        rel="noopener noreferrer"
+                      >
                         Show more
                       </Link>
                     </div>
@@ -151,6 +156,15 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                 {isFetchingNextPage ? 'Loading...' : 'Load more'}
               </button>
             )}
+          </div>
+        ) : isError ? (
+          <div className={css.errorState}>
+            <h2>Something went wrong</h2>
+            <p>We could not load campers.</p>
+
+            <button type="button" onClick={() => refetch()}>
+              Try again
+            </button>
           </div>
         ) : (
           <div className={css.containerNotFount}>

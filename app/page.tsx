@@ -6,7 +6,14 @@ export default function Home() {
   return (
     <div className={css.page}>
       <div className={css.background}>
-        <Image src="/background.png" alt="Truck background" layout="fill" objectFit="cover" />
+        <Image
+          src="/background.png"
+          alt="Truck background"
+          fill
+          priority
+          sizes="100vw"
+          className={css.backgroundImage}
+        />
         <div className={css.overlay} />
       </div>
       <main className={css.main}>
@@ -14,7 +21,7 @@ export default function Home() {
           <h1 className={css.title}>Campers of your dreams</h1>
           <p className={css.about}>You can find everything you want in our catalog</p>
         </div>
-        <Link href="./catalog" className={css.mainButton}>
+        <Link href="/catalog" className={css.mainButton}>
           View Now
         </Link>
       </main>

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import css from './Header.module.css';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Header() {
   const pathname = usePathname();
@@ -16,9 +17,7 @@ export default function Header() {
       <div className={css.containerHeader}>
         <div className={css.logo}>
           <Link href="/">
-            <svg width={136} height={16}>
-              <use href="/TravelTrucks_logo.svg"></use>
-            </svg>
+            <Image src="/TravelTrucks_logo.svg" alt="TravelTrucks" width={136} height={16} priority />
           </Link>
         </div>
         <nav className={css.menu}>

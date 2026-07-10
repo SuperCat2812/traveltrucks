@@ -47,3 +47,18 @@ a {
 ul {
   list-style: none;
 }
+
+.mainButton,
+.searchBtn,
+.clearBtn,
+.showMore,
+.louderBtn,
+.formButton {
+  cursor: pointer;
+}
+
+.formButton:disabled,
+.louderBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}

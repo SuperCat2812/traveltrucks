@@ -13,8 +13,8 @@ export default function RatingBar({ review }: RatingBarProps) {
       readonly
       initialValue={review.reviewer_rating}
       allowFraction
-      fillIcon={<GiRoundStar size={16} color="--rating" />}
-      emptyIcon={<GiRoundStar size={16} color="--gray-light" />}
+      fillIcon={<GiRoundStar size={16} color="var(--rating)" />}
+      emptyIcon={<GiRoundStar size={16} color="var(--gray-light)" />}
     />
   );
 }

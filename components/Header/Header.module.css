@@ -1,7 +1,6 @@
 .containerHeader {
-  display: flex;
-  max-height: 72px;
-  justify-content: start;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 24px 64px;
   background-color: var(--inputs);
@@ -11,7 +10,7 @@
 .menuList {
   display: flex;
   gap: 32px;
-  margin-left: 450px;
+  margin-left: 0;
 }
 
 .active {

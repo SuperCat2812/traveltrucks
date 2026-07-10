@@ -20,8 +20,6 @@
   background-color: var(--inputs);
   display: flex;
   gap: 24px;
-  width: 888px;
-  padding: 24px;
 }
 .camperItem:not(:first-child) {
   margin-top: 32px;
@@ -32,9 +30,11 @@
 
 .containerCamper {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 24px;
   width: 840px;
+  min-width: 0;
   height: 264px;
   justify-content: space-between;
 }
@@ -134,7 +134,6 @@
   border: 1px solid var(--green-hover);
 }
 
-/* Not-Fount */
 .containerNotFount {
   display: flex;
   flex-direction: column;
@@ -215,4 +214,27 @@
 
   background: rgb(0 0 0 / 20%);
   backdrop-filter: blur(1px);
+}
+
+.errorState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  width: 888px;
+  min-height: 400px;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: var(--inputs);
+  text-align: center;
+}
+
+.errorState button {
+  padding: 16px 32px;
+  border: none;
+  border-radius: 200px;
+  background-color: var(--grey-green);
+  color: var(--white);
+  cursor: pointer;
 }

@@ -20,7 +20,11 @@ export default function BookForm({ camperId }: BookFormParams) {
     email: '',
   };
   const contactFormSchema = Yup.object().shape({
-    name: Yup.string().min(2, 'Please enter your full name.').required('Please enter your name.'),
+    name: Yup.string()
+      .trim()
+      .min(2, 'Please enter your full name.')
+      .matches(/^[A-Za-zА-Яа-яІіЇїЄєҐґ' -]+$/, 'Name can contain only letters.')
+      .required('Please enter your name.'),
     email: Yup.string().email('Please enter a valid email.').required('Please enter your email.'),
   });
   const handleSubmit = async (values: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
@@ -60,13 +64,7 @@ export default function BookForm({ camperId }: BookFormParams) {
                       </label>
                     )}
                     <div className={`${css.inputContainer} ${nameError ? css.inputError : ''}`}>
-                      <Field
-                        id="name"
-                        type="text"
-                        name="name"
-                        placeholder={values.name || 'Name*'}
-                        className={css.input}
-                      />
+                      <Field id="name" type="text" name="name" placeholder="Name*" className={css.input} />
                       <MdErrorOutline size={24} className={nameError ? css.errorIcon : css.errorIconOff} />
                     </div>
                   </div>
@@ -85,13 +83,7 @@ export default function BookForm({ camperId }: BookFormParams) {
                       </label>
                     )}
                     <div className={`${css.inputContainer} ${emailError ? css.inputError : ''}`}>
-                      <Field
-                        id="email"
-                        type="email"
-                        name="email"
-                        placeholder={values.email || 'Email*'}
-                        className={css.input}
-                      />
+                      <Field id="email" type="email" name="email" placeholder="Email*" className={css.input} />
                       <MdErrorOutline size={24} className={emailError ? css.errorIcon : css.errorIconOff} />
                     </div>
                   </div>

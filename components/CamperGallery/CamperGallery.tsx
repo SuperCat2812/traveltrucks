@@ -18,10 +18,14 @@ type CamperGalleryProps = {
 
 export default function CamperGallery({ images, name }: CamperGalleryProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+  const canLoop = images.length > 1;
+  if (!images.length) {
+    return <p>No images available</p>;
+  }
   return (
     <div className={css.gallery}>
       <Swiper
-        loop
+        loop={canLoop}
         spaceBetween={10}
         navigation
         thumbs={{ swiper: thumbsSwiper }}
@@ -37,7 +41,7 @@ export default function CamperGallery({ images, name }: CamperGalleryProps) {
 
       <Swiper
         onSwiper={setThumbsSwiper}
-        loop
+        loop={canLoop}
         spaceBetween={32}
         slidesPerView={4}
         freeMode
@@ -46,7 +50,7 @@ export default function CamperGallery({ images, name }: CamperGalleryProps) {
         className={css.thumbsSwiper}
       >
         {images.map(image => (
-          <SwiperSlide key={image.id}>
+          <SwiperSlide key={image.id} className={css.thumbSlide}>
             <Image src={image.thumb} alt={name} width={120} height={80} className={css.thumbImage} />
           </SwiperSlide>
         ))}

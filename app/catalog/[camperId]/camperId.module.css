@@ -37,6 +37,7 @@
 
 .amenitieList {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -44,7 +45,7 @@
   border-radius: 100px;
   padding-block: 12px;
   padding-inline: 18px;
-  width: 115px;
+  width: max-content;
   height: 48px;
   background-color: var(--badges);
   mix-blend-mode: multiply;
@@ -149,58 +150,8 @@
   justify-content: space-between;
 }
 
-.itemCategory {
-  border-radius: 100px;
-  padding-block: 12px;
-  padding-inline: 18px;
-  width: max-content;
-  height: 304px;
-  background-color: var(--badges);
-  mix-blend-mode: multiply;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.showMore {
-  border-radius: 200px;
-  padding-block: 16px;
-  padding-inline: 43px;
-  width: 173px;
-  height: 56px;
-  background-color: var(--grey-green);
-  border: none;
-  outline: none;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  color: var(--white);
-}
-
-.showMore:hover {
-  background-color: var(--green-hover);
-}
-
 .ratingStar {
   color: var(--rating);
-}
-
-.louderBtn {
-  border: 1px solid #dadde1;
-  border-radius: 200px;
-  padding-block: 16px;
-  padding-inline: 32px;
-  width: 145px;
-  height: 56px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  background-color: var(--white);
-}
-.louderBtn:hover {
-  border: 1px solid var(--green-hover);
 }
 
 .reviewsTitle {

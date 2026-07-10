@@ -13,13 +13,13 @@ interface CamperDetailsProps {
 
 export default async function CamperDetails({ params }: CamperDetailsProps) {
   const { camperId } = await params;
-  const camper = await getCamperID(camperId);
-  const reviews = await getReviews(camperId);
+  const [camper, reviews] = await Promise.all([getCamperID(camperId), getReviews(camperId)]);
   const formatLabel = (value: string) =>
     value
       .split('_')
       .map(word => word[0].toUpperCase() + word.slice(1))
       .join(' ');
+  const features = [camper.transmission, camper.engine, ...camper.amenities, camper.form];
   return (
     <div>
       <div key={camper.id} className={css.camperItem}>
@@ -35,7 +35,7 @@ export default async function CamperDetails({ params }: CamperDetailsProps) {
               <div className={css.containerCamperRating}>
                 <div className={css.camperRating}>
                   <GiRoundStar size={16} className={css.ratingStar} /> <p>{camper.rating}</p>
-                  <p>({camper.totalReviews} Reviews )</p>
+                  <p>({camper.totalReviews} Reviews)</p>
                   <p className={css.location}>
                     <CiMap size={24} /> {camper.location}
                   </p>
@@ -55,9 +55,9 @@ export default async function CamperDetails({ params }: CamperDetailsProps) {
             <div className={css.amenitieContent}>
               <p className={css.amenitieTitle}>Vehicle details</p>
               <ul className={css.amenitieList}>
-                {camper.amenities.map(amenitie => (
-                  <li key={amenitie} className={css.amenitieItem}>
-                    <p className={css.amenitieText}>{formatLabel(amenitie)}</p>
+                {features.map((feature, index) => (
+                  <li key={`${feature}-${index}`} className={css.amenitieItem}>
+                    <p className={css.amenitieText}>{formatLabel(feature)}</p>
                   </li>
                 ))}
               </ul>
