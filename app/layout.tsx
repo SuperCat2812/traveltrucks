@@ -17,7 +17,13 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: 'TravelTrucks',
-  description: 'TravelTrucks is web site to booking camp truck',
+  description: 'Find and rent your perfect camper.',
+  openGraph: {
+    title: 'TravelTrucks',
+    description: 'Find and rent your perfect camper.',
+    url: 'https://traveltrucks-gray.vercel.app',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({

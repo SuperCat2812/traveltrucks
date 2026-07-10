@@ -6,11 +6,26 @@ import CamperGallery from '@/components/CamperGallery/CamperGallery';
 import { FaEuroSign } from 'react-icons/fa';
 import RatingBar from '@/components/RatingBar/RatingBar';
 import BookForm from '@/components/BookForm/BookForm';
+import { Metadata } from 'next';
 
 interface CamperDetailsProps {
   params: Promise<{ camperId: string }>;
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ camperId: string }> }): Promise<Metadata> {
+  const { camperId } = await params;
+  const camper = await getCamperID(camperId);
+
+  return {
+    title: camper.name,
+    description: camper.description,
+    openGraph: {
+      title: camper.name,
+      description: camper.description,
+      images: [camper.gallery[0].thumb],
+    },
+  };
+}
 export default async function CamperDetails({ params }: CamperDetailsProps) {
   const { camperId } = await params;
   const [camper, reviews] = await Promise.all([getCamperID(camperId), getReviews(camperId)]);
