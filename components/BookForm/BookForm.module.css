@@ -1,0 +1,112 @@
+.formTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.formDescription {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
+  margin-top: 8px;
+}
+
+.formBook {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.formBookContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputWrapper {
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background-color: var(--inputs);
+}
+.error {
+  color: var(--button);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.inputWrapperError {
+  border-color: var(--button);
+  background-color: #fff0f0;
+}
+
+.inputContainer {
+  width: 100%;
+  padding: 16px 42px 16px 16px;
+  border: none;
+  outline: none;
+  background: transparent;
+  box-sizing: border-box;
+}
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.floatingLabel {
+  position: absolute;
+  top: -7px;
+  left: 14px;
+  padding-inline: 4px;
+  background-color: var(--inputs);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.floatingLabelError {
+  color: var(--button);
+  background-color: #fff0f0;
+}
+
+.errorIconOff {
+  display: none;
+}
+
+.errorIcon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+
+  border-radius: 50%;
+  color: var(--button);
+  font-size: 11px;
+  transform: translateY(-50%);
+}
+
+.errorText {
+  margin: 0;
+  color: var(--button);
+  font-size: 12px;
+}
+
+.formButton {
+  border-radius: 200px;
+  padding-block: 16px;
+  padding-inline: 60px;
+  width: 527px;
+  height: 56px;
+  background-color: var(--grey-green);
+  color: var(--white);
+  border: none;
+  outline: none;
+  margin-top: 24px;
+}

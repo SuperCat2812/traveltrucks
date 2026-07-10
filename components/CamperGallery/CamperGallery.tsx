@@ -6,13 +6,13 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import Image from 'next/image';
-import { camperID } from '@/types/types';
+import { CamperID } from '@/types/types';
 import { useState } from 'react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import css from './CamperGallery.module.css';
 
 type CamperGalleryProps = {
-  images: camperID['gallery'];
+  images: CamperID['gallery'];
   name: string;
 };
 

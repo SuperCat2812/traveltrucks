@@ -5,6 +5,7 @@ import { CiMap } from 'react-icons/ci';
 import CamperGallery from '@/components/CamperGallery/CamperGallery';
 import { FaEuroSign } from 'react-icons/fa';
 import RatingBar from '@/components/RatingBar/RatingBar';
+import BookForm from '@/components/BookForm/BookForm';
 
 interface CamperDetailsProps {
   params: Promise<{ camperId: string }>;
@@ -92,8 +93,8 @@ export default async function CamperDetails({ params }: CamperDetailsProps) {
         </div>
       </div>
       <div className={css.reviewsSection}>
-        <p className={css.reviewsTitle}>Reviews</p>
         <div className={css.reviewContainer}>
+          <p className={css.reviewsTitle}>Reviews</p>
           <ul className={css.reviewList}>
             {reviews.map(review => (
               <li key={review.id} className={css.reviewItem}>
@@ -109,7 +110,9 @@ export default async function CamperDetails({ params }: CamperDetailsProps) {
             ))}
           </ul>
         </div>
-        <div></div>
+        <div className={css.bookingFormContainer}>
+          <BookForm camperId={camperId } />
+        </div>
       </div>
     </div>
   );

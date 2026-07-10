@@ -5,7 +5,12 @@ import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const pathname = usePathname();
-  const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === href;
+    }
+    return pathname.startsWith(href);
+  };
   return (
     <header>
       <div className={css.containerHeader}>
@@ -19,18 +24,12 @@ export default function Header() {
         <nav className={css.menu}>
           <ul className={css.menuList}>
             <li className={css.menuItem}>
-              <Link
-                href="/"
-                className={`${css.menuLink} ${isActive('/') ? css.active : ''}`}
-              >
+              <Link href="/" className={`${css.menuLink} ${isActive('/') ? css.active : ''}`}>
                 Home
               </Link>
             </li>
             <li className={css.menuItem}>
-              <Link
-                href="/catalog"
-                className={`${css.menuLink} ${isActive('/catalog') ? css.active : ''}`}
-              >
+              <Link href="/catalog" className={`${css.menuLink} ${isActive('/catalog') ? css.active : ''}`}>
                 Catalog
               </Link>
             </li>

@@ -4,34 +4,33 @@ import css from './Filter.module.css';
 import { CiMap } from 'react-icons/ci';
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
-import { filterData, formDataValue } from '@/types/types';
+import { FilterData, FormDataValue } from '@/types/types';
 
 interface FilterProps {
   location: string;
   setLocation: Dispatch<SetStateAction<string>>;
-  setFilters: Dispatch<SetStateAction<formDataValue>>;
-  filter: filterData;
+  setFilters: Dispatch<SetStateAction<FormDataValue>>;
+  setDraftFilters: Dispatch<SetStateAction<FormDataValue>>;
+  draftFilters: FormDataValue;
+  filters: FilterData;
+  onClear: () => void;
 }
 
 export default function Filter({
   location,
-
   setLocation,
   setFilters,
-  filter,
+  filters,
+  onClear,
+  setDraftFilters,
+  draftFilters,
 }: FilterProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
 
-    const camperType = formData.get('camperType')?.toString() ?? '';
-    const engineType = formData.get('engineType')?.toString() ?? '';
-    const transmissionType = formData.get('transmissionType')?.toString() ?? '';
     setFilters({
+      ...draftFilters,
       location,
-      form: camperType,
-      engine: engineType,
-      transmission: transmissionType,
     });
   };
   const handleClear = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,13 +38,7 @@ export default function Filter({
 
     if (form) {
       form.reset();
-      setLocation('');
-      setFilters({
-        location: '',
-        form: '',
-        engine: '',
-        transmission: '',
-      });
+      onClear();
     }
   };
   const formatLabel = (value: string) =>
@@ -77,10 +70,22 @@ export default function Filter({
 
               <div className={css.CamperField}>
                 <p className={css.radioTitle}>Camper form</p>
-                {filter.forms.map(form => {
+                {filters.forms.map(form => {
                   return (
                     <label key={form} htmlFor={form} className={css.labelRadio}>
-                      <input type="radio" name="camperType" id={form} value={form} />
+                      <input
+                        type="radio"
+                        name="camperType"
+                        id={form}
+                        value={form}
+                        checked={draftFilters.form === form}
+                        onChange={() =>
+                          setDraftFilters(prev => ({
+                            ...prev,
+                            form,
+                          }))
+                        }
+                      />
                       <IoMdRadioButtonOff className={css.empty} size={24} />
                       <IoMdRadioButtonOn className={css.checked} size={24} />
                       <span>{formatLabel(form)}</span>
@@ -90,10 +95,22 @@ export default function Filter({
               </div>
               <div className={css.CamperField}>
                 <p className={css.radioTitle}>Engine</p>
-                {filter.engines.map(engine => {
+                {filters.engines.map(engine => {
                   return (
                     <label key={engine} htmlFor={engine} className={css.labelRadio}>
-                      <input type="radio" name="engineType" id={engine} value={engine} />
+                      <input
+                        type="radio"
+                        name="engineType"
+                        id={engine}
+                        value={engine}
+                        checked={draftFilters.engine === engine}
+                        onChange={() =>
+                          setDraftFilters(prev => ({
+                            ...prev,
+                            engine,
+                          }))
+                        }
+                      />
                       <IoMdRadioButtonOff className={css.empty} size={24} />
                       <IoMdRadioButtonOn className={css.checked} size={24} />
                       <span>{formatLabel(engine)}</span>
@@ -103,10 +120,22 @@ export default function Filter({
               </div>
               <div className={css.CamperField}>
                 <p className={css.radioTitle}>Transmission</p>
-                {filter.transmissions.map(transmission => {
+                {filters.transmissions.map(transmission => {
                   return (
                     <label key={transmission} htmlFor={transmission} className={css.labelRadio}>
-                      <input type="radio" name="transmissionType" id={transmission} value={transmission} />
+                      <input
+                        type="radio"
+                        name="transmissionType"
+                        id={transmission}
+                        value={transmission}
+                        checked={draftFilters.transmission === transmission}
+                        onChange={() =>
+                          setDraftFilters(prev => ({
+                            ...prev,
+                            transmission,
+                          }))
+                        }
+                      />
                       <IoMdRadioButtonOff className={css.empty} size={24} />
                       <IoMdRadioButtonOn className={css.checked} size={24} />
                       <span>{formatLabel(transmission)}</span>

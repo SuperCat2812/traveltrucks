@@ -133,3 +133,86 @@
 .louderBtn:hover {
   border: 1px solid var(--green-hover);
 }
+
+/* Not-Fount */
+.containerNotFount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 16px;
+  padding: 24px;
+  width: 888px;
+  height: 840px;
+  background-color: var(--inputs);
+  justify-content: center;
+  gap: 16px;
+}
+
+.notFountTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  text-align: center;
+}
+
+.notFountDescription {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  width: 420px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.notFountButton {
+  display: flex;
+  gap: 24px;
+  margin-top: 43px;
+}
+.searchBtn {
+  background-color: var(--grey-green);
+  border-radius: 200px;
+  padding-block: 16px;
+  padding-inline: 60px;
+  width: 312px;
+  height: 56px;
+  color: var(--white);
+  border: none;
+  outline: none;
+}
+
+.clearBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dadde1;
+  border-radius: 200px;
+  padding-block: 16px;
+  padding-inline: 32px;
+  width: 312px;
+  height: 56px;
+  background-color: var(--white);
+  gap: 4px;
+}
+
+.searchBtn:hover {
+  background-color: var(--green-hover);
+}
+.clearBtn:hover {
+  border: 1px solid var(--green-hover);
+}
+
+.loadingOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgb(0 0 0 / 20%);
+  backdrop-filter: blur(1px);
+}

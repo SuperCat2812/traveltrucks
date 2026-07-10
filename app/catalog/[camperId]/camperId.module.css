@@ -14,6 +14,9 @@
 .reviewsSection {
   margin-top: 32px;
   padding: 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
 }
 
 .Images {
@@ -206,14 +209,11 @@
   line-height: 1.33333;
 }
 
-.reviewContainer {
-  margin-top: 24px;
-}
-
 .reviewList {
   display: flex;
   gap: 24px;
   flex-direction: column;
+  margin-top: 24px;
 }
 
 .reviewItem {
@@ -252,4 +252,13 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.bookingFormContainer {
+  border: 1px solid #dadde1;
+  border-radius: 16px;
+  padding: 44px;
+  width: 641px;
+  height: max-content;
+  margin-top: 56px;
 }
