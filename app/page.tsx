@@ -1,7 +1,17 @@
 import Image from 'next/image';
 import css from './page.module.css';
 import Link from 'next/link';
-
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'TravelTrucks',
+  description: 'Find and rent your perfect camper.',
+  openGraph: {
+    title: 'TravelTrucks',
+    description: 'Find and rent your perfect camper.',
+    url: 'https://traveltrucks-gray.vercel.app',
+    images: ['/og-image.png'],
+  },
+};
 export default function Home() {
   return (
     <div className={css.page}>
