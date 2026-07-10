@@ -16,13 +16,22 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'TravelTrucks',
+  metadataBase: new URL('https://traveltrucks-gray.vercel.app'),
+
+  title: {
+    default: 'TravelTrucks',
+    template: '%s | TravelTrucks',
+  },
+
   description: 'Find and rent your perfect camper.',
+
   openGraph: {
     title: 'TravelTrucks',
     description: 'Find and rent your perfect camper.',
-    url: 'https://traveltrucks-gray.vercel.app',
+    url: '/',
+    siteName: 'TravelTrucks',
     images: ['/background.png'],
+    type: 'website',
   },
 };
 

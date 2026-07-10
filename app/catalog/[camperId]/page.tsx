@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ camperId:
     openGraph: {
       title: camper.name,
       description: camper.description,
+      url: `/catalog/${camperId}`,
       images: [camper.gallery[0].thumb],
     },
   };

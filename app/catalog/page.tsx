@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Campers Catalog',
     description: 'Browse available campers.',
-    url: 'https://traveltrucks-gray.vercel.app/catalog',
-    images: ['/og-image.png'],
+    url: '/catalog',
+    images: ['/background.png'],
   },
 };
 export default async function Catalog() {

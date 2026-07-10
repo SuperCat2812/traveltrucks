@@ -16,21 +16,11 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { RxCross2 } from 'react-icons/rx';
 import Loader from '@/components/Loading/Loading';
 import Link from 'next/link';
-import { Metadata } from 'next';
 
 interface ClientCatalogProps {
   filter: FilterData;
 }
-export const metadata: Metadata = {
-  title: 'Campers Catalog',
-  description: 'Browse available campers.',
-  openGraph: {
-    title: 'Campers Catalog',
-    description: 'Browse available campers.',
-    url: 'https://traveltrucks-gray.vercel.app/catalog',
-    images: ['/background.png'],
-  },
-};
+
 export default function ClientCatalog({ filter }: ClientCatalogProps) {
   const [location, setLocation] = useState('');
   const initialFilters: FormDataValue = {
