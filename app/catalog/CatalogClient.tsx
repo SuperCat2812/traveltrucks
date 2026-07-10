@@ -12,17 +12,16 @@ import { FaGasPump } from 'react-icons/fa6';
 import { MdElectricBolt } from 'react-icons/md';
 import { FaCarAlt, FaEuroSign } from 'react-icons/fa';
 import { getCamper } from '@/lib/api/camperApi';
-import { useRouter } from 'next/navigation';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { RxCross2 } from 'react-icons/rx';
 import Loader from '@/components/Loading/Loading';
+import Link from 'next/link';
 
 interface ClientCatalogProps {
   filter: FilterData;
 }
 
 export default function ClientCatalog({ filter }: ClientCatalogProps) {
-  const router = useRouter();
   const [location, setLocation] = useState('');
   const initialFilters: FormDataValue = {
     location: '',
@@ -32,7 +31,6 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
   };
   const [filters, setFilters] = useState<FormDataValue>(initialFilters);
   const [draftFilters, setDraftFilters] = useState<FormDataValue>(initialFilters);
-  const [loading, setLoading] = useState(false);
   const perPage = 4;
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useInfiniteQuery({
     queryKey: ['campers', filters],
@@ -47,10 +45,6 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
   });
   const campers = data?.pages.flatMap(page => page.campers) ?? [];
 
-  const handlerClick = (id: string) => {
-    setLoading(true);
-    router.push(`/catalog/${id}`);
-  };
   const handleClearFilters = () => {
     setLocation('');
     setFilters(initialFilters);
@@ -61,7 +55,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
       .split('_')
       .map(word => word[0].toUpperCase() + word.slice(1))
       .join(' ');
-  const showLoader = isLoading || loading || isFetchingNextPage;
+  const showLoader = isLoading || isFetchingNextPage;
   return (
     <>
       {showLoader && (
@@ -144,9 +138,9 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                       </ul>
                     </div>
                     <div>
-                      <button className={css.showMore} onClick={() => handlerClick(camper.id)}>
+                      <Link href={`/catalog/${camper.id}`} target="_blank" className={css.showMore}>
                         Show more
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </li>

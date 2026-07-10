@@ -1,10 +1,10 @@
 'use client';
-import { review } from '@/types/types';
+import { Review } from '@/types/types';
 import { GiRoundStar } from 'react-icons/gi';
 import { Rating } from 'react-simple-star-rating';
 
 interface RatingBarProps {
-  review: review;
+  review: Review;
 }
 
 export default function RatingBar({ review }: RatingBarProps) {

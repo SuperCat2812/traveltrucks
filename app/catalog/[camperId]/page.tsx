@@ -111,7 +111,7 @@ export default async function CamperDetails({ params }: CamperDetailsProps) {
           </ul>
         </div>
         <div className={css.bookingFormContainer}>
-          <BookForm camperId={camperId } />
+          <BookForm camperId={camperId} />
         </div>
       </div>
     </div>

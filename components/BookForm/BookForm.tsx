@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import css from './BookForm.module.css';
 import { Campers } from '@/types/types';
 import { postBook } from '@/lib/api/camperApi';
+import toast from 'react-hot-toast';
 
 interface BookFormParams {
   camperId: Campers['id'];
@@ -22,16 +23,26 @@ export default function BookForm({ camperId }: BookFormParams) {
     name: Yup.string().min(2, 'Please enter your full name.').required('Please enter your name.'),
     email: Yup.string().email('Please enter a valid email.').required('Please enter your email.'),
   });
-  const handlerSubmit = async (value: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
-    await postBook({ dataID: camperId, bookData: { ...value } });
-    resetForm();
+  const handleSubmit = async (values: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
+    try {
+      await postBook({
+        dataID: camperId,
+        bookData: values,
+      });
+
+      resetForm();
+      toast.success('Booking request sent successfully.');
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to send booking request.');
+    }
   };
   return (
     <>
       <p className={css.formTitle}>Book your campervan now</p>
       <p className={css.formDescription}>Stay connected! We are always ready to help you.</p>
-      <Formik initialValues={initialValues} onSubmit={handlerSubmit} validationSchema={contactFormSchema}>
-        {({ errors, touched, values }) => {
+      <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={contactFormSchema}>
+        {({ errors, touched, values, isSubmitting }) => {
           const nameError = Boolean(errors.name && touched.name);
           const emailError = Boolean(errors.email && touched.email);
 
@@ -53,7 +64,7 @@ export default function BookForm({ camperId }: BookFormParams) {
                         id="name"
                         type="text"
                         name="name"
-                        placeholder={values.name || nameError ? 'Name*' : 'Name*'}
+                        placeholder={values.name || 'Name*'}
                         className={css.input}
                       />
                       <MdErrorOutline size={24} className={nameError ? css.errorIcon : css.errorIconOff} />
@@ -78,8 +89,8 @@ export default function BookForm({ camperId }: BookFormParams) {
                         id="email"
                         type="email"
                         name="email"
-                        placeholder={values.email || (emailError ? 'Email*' : 'Email*')}
-                        className={`${css.input} ${emailError ? css.inputError : ''}`}
+                        placeholder={values.email || 'Email*'}
+                        className={css.input}
                       />
                       <MdErrorOutline size={24} className={emailError ? css.errorIcon : css.errorIconOff} />
                     </div>
@@ -88,8 +99,8 @@ export default function BookForm({ camperId }: BookFormParams) {
                   <ErrorMessage name="email" component="span" className={css.error} />
                 </div>
               </div>
-              <button type="submit" className={css.formButton}>
-                Send
+              <button type="submit" className={css.formButton} disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send'}
               </button>
             </Form>
           );
