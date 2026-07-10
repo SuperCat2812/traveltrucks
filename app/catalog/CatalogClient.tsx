@@ -168,7 +168,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
           </div>
         ) : (
           <div className={css.containerNotFount}>
-            <Image src="/notFount.png" alt="notFount" width={488} height={463} />
+            <Image src="/notFound.png" alt="notFount" width={488} height={463} />
             <h2 className={css.notFountTitle}>No campers found</h2>
             <span className={css.notFountDescription}>
               We couldn`t find any campers that match your filters. Try adjusting your search or clearing some filters.
