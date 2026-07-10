@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: 'Campers Catalog',
     description: 'Browse available campers.',
     url: 'https://traveltrucks-gray.vercel.app/catalog',
-    images: ['/og-image.png'],
+    images: ['/background.png'],
   },
 };
 export default function ClientCatalog({ filter }: ClientCatalogProps) {

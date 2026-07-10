@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: 'TravelTrucks',
     description: 'Find and rent your perfect camper.',
     url: 'https://traveltrucks-gray.vercel.app',
-    images: ['/og-image.png'],
+    images: ['/background.png'],
   },
 };
 
