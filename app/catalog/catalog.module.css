@@ -184,9 +184,11 @@
   color: var(--white);
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .clearBtn {
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

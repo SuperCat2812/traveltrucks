@@ -128,10 +128,12 @@
   color: var(--white);
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .clearBtn {
   display: flex;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   border: 1px solid #dadde1;
