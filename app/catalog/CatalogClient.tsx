@@ -137,7 +137,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                         </li>
                       </ul>
                     </div>
-                    <div>
+                    <div className={css.showMoreContainer}>
                       <Link
                         href={`/catalog/${camper.id}`}
                         target="_blank"

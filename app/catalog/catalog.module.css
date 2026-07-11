@@ -93,6 +93,10 @@
   align-items: center;
 }
 
+.showMoreContainer {
+  margin-bottom: 15px;
+}
+
 .showMore {
   border-radius: 200px;
   padding-block: 16px;

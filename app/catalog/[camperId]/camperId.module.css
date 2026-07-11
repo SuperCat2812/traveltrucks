@@ -32,7 +32,7 @@
   border-radius: 16px;
   padding: 24px;
   width: 650px;
-  height: 50%;
+  height: max-content;
 }
 
 .amenitieList {
