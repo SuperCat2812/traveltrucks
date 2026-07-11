@@ -46,7 +46,7 @@ export default async function CamperDetails({ params }: CamperDetailsProps) {
           <div className={css.containerCamper}>
             <div>
               <div className={css.camperTitle}>
-                <p>{camper.name}</p>
+                <h1>{camper.name}</h1>
               </div>
               <div className={css.containerCamperRating}>
                 <div className={css.camperRating}>

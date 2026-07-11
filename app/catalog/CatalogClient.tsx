@@ -90,7 +90,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                   <div className={css.containerCamper}>
                     <div>
                       <div className={css.camperTitle}>
-                        <p className={css.name}>{camper.name}</p>
+                        <h2 className={css.name}>{camper.name}</h2>
                         <p className={css.price}>
                           <FaEuroSign size={20} />
                           {camper.price}
@@ -110,7 +110,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                     </div>
                     <div>
                       <ul className={css.listCategory}>
-                        <li key={camper.engine} className={css.itemCategory}>
+                        <li className={css.itemCategory}>
                           {camper.engine == 'petrol' || camper.engine == 'diesel' ? (
                             <FaGasPump size={20} />
                           ) : camper.engine == 'hybrid' ? (
@@ -123,7 +123,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                           )}
                           {formatLabel(camper.engine)}
                         </li>
-                        <li key={camper.transmission} className={css.itemCategory}>
+                        <li className={css.itemCategory}>
                           {camper.transmission === 'automatic' ? (
                             <TbAutomaticGearbox size={20} />
                           ) : (
@@ -131,7 +131,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                           )}
                           {formatLabel(camper.transmission)}
                         </li>
-                        <li key={camper.form} className={css.itemCategory}>
+                        <li className={css.itemCategory}>
                           <FaCarAlt size={20} />
                           {formatLabel(camper.form)}
                         </li>
@@ -143,6 +143,7 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
                         target="_blank"
                         className={css.showMore}
                         rel="noopener noreferrer"
+                        prefetch={false}
                       >
                         Show more
                       </Link>
@@ -167,13 +168,14 @@ export default function ClientCatalog({ filter }: ClientCatalogProps) {
             </button>
           </div>
         ) : (
-          <div className={css.containerNotFount}>
-            <Image src="/notFound.png" alt="notFount" width={488} height={463} />
-            <h2 className={css.notFountTitle}>No campers found</h2>
-            <span className={css.notFountDescription}>
-              We couldn`t find any campers that match your filters. Try adjusting your search or clearing some filters.
+          <div className={css.containerNotFound}>
+            <Image src="/notFound.png" alt="No campers found" width={488} height={463} />
+            <h2 className={css.notFoundTitle}>No campers found</h2>
+            <span className={css.notFoundDescription}>
+              We couldn&apos;t find any campers that match your filters. Try adjusting your search or clearing some
+              filters.
             </span>
-            <div className={css.notFountButton}>
+            <div className={css.notFoundButton}>
               <button type="button" className={css.clearBtn} onClick={handleClearFilters}>
                 <RxCross2 size={24} />
                 Clear filters

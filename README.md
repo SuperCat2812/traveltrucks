@@ -8,9 +8,9 @@ TravelTrucks is a modern web application for camper rental built with **Next.js*
 
 ## 📂 Repository
 
-🔗 https://github.com/YOUR_USERNAME/traveltrucks
+🔗 https://github.com/SuperCat2812/traveltrucks
 
-> Replace `YOUR_USERNAME` with your GitHub username or paste the repository link.
+
 
 ---
 
@@ -55,7 +55,7 @@ TravelTrucks is a modern web application for camper rental built with **Next.js*
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/traveltrucks.git
+git clone https://github.com/SuperCat2812/traveltrucks.git
 ```
 
 Install dependencies:
