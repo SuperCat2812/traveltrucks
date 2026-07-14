@@ -3,6 +3,7 @@
   gap: 65px;
   padding-top: 48px;
   padding-bottom: 52px;
+  justify-content: center;
 }
 
 .containerList {
